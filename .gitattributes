@@ -1,0 +1,28 @@
+* text=auto eol=lf
+
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
+
+# Do not include local/build/vendor artifacts in distribution archive
+/node_modules export-ignore
+/vendor export-ignore
+/public/build export-ignore
+
+# Exclude runtime/cache artifacts but keep directory structure via .gitignore files
+/bootstrap/cache/* export-ignore
+/storage/app/* export-ignore
+/storage/framework/* export-ignore
+/storage/logs/* export-ignore
+
+# Exclude local SQLite database
+/database/database.sqlite export-ignore
+
+# Dot-env (in case committed by mistake)
+/.env export-ignore
