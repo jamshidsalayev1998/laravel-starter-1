@@ -44,7 +44,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // API request'lar uchun JSON response
         $exceptions->render(function (Throwable $e, Request $request) {
             if ($request->expectsJson() || $request->is('api/*')) {
-                return handleApiException($e, $request);
+                return \App\Providers\AppServiceProvider::handleApiException($e, $request);
             }
         });
 
@@ -159,43 +159,3 @@ return Application::configure(basePath: dirname(__DIR__))
         });
     })->create();
 
-/**
- * API exception'larini boshqarish funksiyasi
- */
-function handleApiException(Throwable $e, Request $request)
-{
-    // Log xatolikni
-    \Log::error('API Exception', [
-        'message' => $e->getMessage(),
-        'file' => $e->getFile(),
-        'line' => $e->getLine(),
-        'trace' => $e->getTraceAsString(),
-        'user_id' => auth()->id(),
-        'url' => $request->fullUrl(),
-        'method' => $request->method(),
-        'ip' => $request->ip(),
-        'user_agent' => $request->userAgent(),
-    ]);
-
-    // Development muhitida batafsil xatolik
-    if (app()->environment('local', 'development')) {
-        return response()->json([
-            'success' => false,
-            'message' => $e->getMessage(),
-            'file' => $e->getFile(),
-            'line' => $e->getLine(),
-            'trace' => $e->getTraceAsString(),
-            'timestamp' => now()->toISOString(),
-            'status_code' => 500,
-        ], 500);
-    }
-
-    // Production muhitida umumiy xatolik
-    return response()->json([
-        'success' => false,
-        'message' => 'Server xatoligi',
-        'timestamp' => now()->toISOString(),
-        'status_code' => 500,
-        'meta' => ['server_error' => true]
-    ], 500);
-}
