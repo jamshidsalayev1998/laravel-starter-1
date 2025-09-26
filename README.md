@@ -9,11 +9,27 @@ composer create-project jamshid/laravel-starter-1 my-project
 cd my-project
 ```
 
-O‘rnatilgandan so‘ng (agar kerak bo‘lsa):
+O'rnatilgandan so'ng:
 
-- `.env` ni tekshiring va ma’lumotlar bazasi sozlamalarini kiriting
-- `php artisan migrate --seed` (seed kerak bo‘lsa rollar/huquqlar yuklanadi)
-- Frontend uchun: `npm install && npm run dev` yoki `npm run build`
+1. `.env` faylini sozlang (MySQL uchun):
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
+
+2. Ma'lumotlar bazasini yarating va migratsiyalarni ishga tushiring:
+   ```bash
+   php artisan migrate --seed
+   ```
+
+3. Frontend uchun (ixtiyoriy):
+   ```bash
+   npm install && npm run dev
+   ```
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>

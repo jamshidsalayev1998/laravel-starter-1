@@ -21,7 +21,7 @@ CHANGELOG.md export-ignore
 /storage/framework/* export-ignore
 /storage/logs/* export-ignore
 
-# Exclude local SQLite database
+# Exclude local database files
 /database/database.sqlite export-ignore
 
 # Dot-env (in case committed by mistake)
