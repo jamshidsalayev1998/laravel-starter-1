@@ -48,7 +48,13 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi",
+            "@php -r \"if (!is_dir('storage/framework/views')) mkdir('storage/framework/views', 0755, true);\"",
+            "@php -r \"if (!is_dir('storage/framework/cache/data')) mkdir('storage/framework/cache/data', 0755, true);\"",
+            "@php -r \"if (!is_dir('storage/framework/sessions')) mkdir('storage/framework/sessions', 0755, true);\"",
+            "@php -r \"if (!is_dir('storage/logs')) mkdir('storage/logs', 0755, true);\"",
+            "@php -r \"if (!is_dir('storage/app/public')) mkdir('storage/app/public', 0755, true);\"",
+            "@php artisan storage:link --ansi"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
