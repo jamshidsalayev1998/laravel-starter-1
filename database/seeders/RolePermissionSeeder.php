@@ -19,14 +19,6 @@ class RolePermissionSeeder extends Seeder
 
         // Create permissions - asosiy permissionlar
         $permissions = [
-            // Asosiy permissionlar
-            'properties.view',
-            'properties.create',
-            'properties.edit',
-            'bookings.view',
-            'bookings.create',
-            'admin.dashboard',
-
             // User management permissions
             'users.view',
             'users.edit',
@@ -56,28 +48,6 @@ class RolePermissionSeeder extends Seeder
         $superAdmin = Role::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'api']);
         $superAdmin->givePermissionTo(Permission::all());
 
-        $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'api']);
-        $admin->givePermissionTo([
-            'properties.view',
-            'bookings.view',
-            'admin.dashboard',
-            'users.view',
-            'users.edit',
-        ]);
 
-        $host = Role::firstOrCreate(['name' => 'host', 'guard_name' => 'api']);
-        $host->givePermissionTo([
-            'properties.view',
-            'properties.create',
-            'properties.edit',
-            'bookings.view',
-        ]);
-
-        $guest = Role::firstOrCreate(['name' => 'guest', 'guard_name' => 'api']);
-        $guest->givePermissionTo([
-            'properties.view',
-            'bookings.create',
-            'bookings.view',
-        ]);
     }
 }

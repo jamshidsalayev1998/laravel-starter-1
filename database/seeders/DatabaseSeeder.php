@@ -30,37 +30,6 @@ class DatabaseSeeder extends Seeder
         );
         $superAdmin->assignRole('super-admin');
 
-        $admin = User::firstOrCreate(
-            ['email' => 'admin@staynow.uz'],
-            [
-                'name' => 'Admin User',
-                'phone' => '+998901234568',
-                'password' => bcrypt('password'),
-                'phone_verified_at' => now(),
-            ]
-        );
-        $admin->assignRole('admin');
 
-        $host = User::firstOrCreate(
-            ['email' => 'host@staynow.uz'],
-            [
-                'name' => 'Host User',
-                'phone' => '+998901234569',
-                'password' => bcrypt('password'),
-                'phone_verified_at' => now(),
-            ]
-        );
-        $host->assignRole('host');
-
-        $guest = User::firstOrCreate(
-            ['email' => 'guest@staynow.uz'],
-            [
-                'name' => 'Guest User',
-                'phone' => '+998901234570',
-                'password' => bcrypt('password'),
-                'phone_verified_at' => now(),
-            ]
-        );
-        $guest->assignRole('guest');
     }
 }
